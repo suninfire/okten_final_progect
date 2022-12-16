@@ -5,5 +5,5 @@ module.exports = {
   New: require('./New'),
   Pub: require('./Pub'),
   Response: require('./Response'),
-  User: require('./User'),
+  User: require('./User')
 };
