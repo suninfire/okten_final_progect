@@ -3,7 +3,7 @@ const { Schema, model} = require('mongoose');
 
 const responseSchema = new Schema ({
     rating: { type: Number, required: true},
-    text: { type: String },
+    comment: { type: String },
     receipt: { type: String, default: ''}
 }, {
 
