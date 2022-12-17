@@ -4,7 +4,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 
 const { PORT, MONGO_URL } = require('./config/config');
-const {authRouter,drinkerRouter,newRouter,pubRouter,responseRouter,userRouter} = require('./routes');
+const {authRouter,drinkerRouter,tidingRouter,pubRouter,responseRouter,userRouter} = require('./routes');
 const {MainErrorHandler} = require('./errors');
 
 
@@ -17,7 +17,7 @@ app.use(express.urlencoded({extended:true}));
 
 app.use('/auth',authRouter);
 app.use('/drinker',drinkerRouter);
-app.use('/new',newRouter);
+app.use('/tiding',newRouter);
 app.use('/pub',pubRouter);
 app.use('/response',responseRouter);
 app.use('/user',userRouter);

@@ -1,12 +1,16 @@
 const { Schema, model} = require('mongoose');
-// const tokenService = require('../services/token.service');
 
 const userSchema = new Schema ({
     username: { type:String, trim: true, required: true},
+    administrator :{ type: Boolean,default:false},
+    adminPhone :{ type: String,default:' '},
     email: { type: String, trim: true, lowercase: true, required:true, unique:true},
     password: { type:String, required: true},
     favoritePubs: { type: [Schema.Types.ObjectId],ref:'pub', select:false},
-    responses: { type: [Schema.Types.ObjectId]},ref:'response',select:true
+    responses: { type: [Schema.Types.ObjectId],ref:'response',select:true},
+    tidings:{ type: [Schema.Types.ObjectId],ref:'tiding', select:true},
+    drinker: { type: Schema.Types.ObjectId,ref:'drinker',select:true},
+    messages: { type: [String],select:true},
 }, {
 
     timestamps:true,
