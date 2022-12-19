@@ -7,7 +7,7 @@ const pubSchema = new Schema ({
     photo: { type: String, default: ''},
     location: {type: String, trim: true, required: true},
     time:{type: String, trim: true, required: true},
-    contacts:{type: Schema.Types.ObjectId,ref:'user', select:true},
+    contacts:{type: [Schema.Types.ObjectId],ref:'user', select:true},
     tidings:{ type: [Schema.Types.ObjectId],ref:'tiding', select:true},
     responses: { type: [Schema.Types.ObjectId],ref:'response',select:true},
     views:{ type: Number},
