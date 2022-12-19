@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 
 const pubSchema = new Schema ({
-    administrator: { type: Schema.Types.ObjectId, ref:'user', select:true, required: true},
+    administrator: { type: [Schema.Types.ObjectId], ref:'user', select:true, required: true},
     name: { type:String, trim: true, required: true},
     photo: { type: String, default: ''},
     location: {type: String, trim: true, required: true},
