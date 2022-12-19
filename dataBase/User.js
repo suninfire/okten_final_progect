@@ -4,7 +4,7 @@ const userSchema = new Schema ({
     username: { type:String, trim: true, required: true},
     avatar: { type: String, default: ''},
     administrator :{ type: Boolean,default:false},
-    pub:{ type: Schema.Types.ObjectId,ref:'pub',select:true},
+    pub:{ type: [Schema.Types.ObjectId],ref:'pub',select:true},
     adminPhone :{ type: String,default:' '},
     email: { type: String, trim: true, lowercase: true, required:true, unique:true},
     password: { type:String, required: true},
