@@ -3,12 +3,52 @@ const Joi = require('joi');
 const {statusCodes} = require('../constants');
 const {ApiError} = require('../errors');
 
-const emailValidator = Joi.string().regex(/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/)
+const emailValidator = Joi.string()
+    .regex(/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/)
     .lowercase()
     .trim()
     .error(new ApiError('Email not valid', statusCodes.BAD_REQUEST));
 
+const passwordValidator = Joi.string()
+    .regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/).required()
+    .error(new ApiError('Password not valid', statusCodes.BAD_REQUEST));
+
+const nameValidator = Joi.string().alphanum()
+    .min(2)
+    .max(35)
+    .trim()
+    .error(new ApiError('Name not valid', statusCodes.BAD_REQUEST));
+
+
+const phoneValidator = Joi.string()
+    .trim()
+    .regex( /((\+38)?\(?\d{3}\)?[\s\.-]?(\d{7}|\d{3}[\s\.-]\d{2}[\s\.-]\d{2}|\d{3}-\d{4}))/)
+    .error(new ApiError('Phone not valid,example:+380970000000', statusCodes.BAD_REQUEST));
+
+
+const newUserValidator = Joi.object({
+    username: nameValidator.required(),
+    photo: Joi.string(),
+    email: emailValidator.required(),
+    password: passwordValidator.required(),
+
+});
+
+const updateUserValidator = Joi.object({
+    username: nameValidator,
+    photo: Joi.string(),
+    email: emailValidator,
+    adminPhone: phoneValidator
+});
+
+const loginUserValidator = Joi.object({
+    email: emailValidator.required().error(new ApiError('Wrong email or password', statusCodes.BAD_REQUEST)),
+    password: passwordValidator.required().error(new ApiError('Wrong email or password', statusCodes.BAD_REQUEST)) ,
+});
 
 module.exports = {
-    emailValidator
+    newUserValidator,
+    updateUserValidator,
+    loginUserValidator,
+    phoneValidator,
 };
