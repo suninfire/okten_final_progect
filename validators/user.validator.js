@@ -10,7 +10,9 @@ const emailValidator = Joi.string()
     .error(new ApiError('Email not valid', statusCodes.BAD_REQUEST));
 
 const passwordValidator = Joi.string()
-    .regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/).required()
+    .min(8)
+    .max(20)
+    // .regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/).required()
     .error(new ApiError('Password not valid', statusCodes.BAD_REQUEST));
 
 const nameValidator = Joi.string().alphanum()
@@ -21,6 +23,7 @@ const nameValidator = Joi.string().alphanum()
 
 
 const phoneValidator = Joi.string()
+    .min(13)
     .trim()
     .regex( /((\+38)?\(?\d{3}\)?[\s\.-]?(\d{7}|\d{3}[\s\.-]\d{2}[\s\.-]\d{2}|\d{3}-\d{4}))/)
     .error(new ApiError('Phone not valid,example:+380970000000', statusCodes.BAD_REQUEST));
@@ -28,7 +31,7 @@ const phoneValidator = Joi.string()
 
 const newUserValidator = Joi.object({
     username: nameValidator.required(),
-    photo: Joi.string(),
+    // photo: Joi.string(),
     email: emailValidator.required(),
     password: passwordValidator.required(),
 
@@ -36,7 +39,7 @@ const newUserValidator = Joi.object({
 
 const updateUserValidator = Joi.object({
     username: nameValidator,
-    photo: Joi.string(),
+    // photo: Joi.string(),
     email: emailValidator,
     adminPhone: phoneValidator
 });

@@ -3,11 +3,11 @@ const {Router} = require('express');
 const drinkerRouter = Router();
 
 drinkerRouter.get(
-    '/:drinkerId',
+    '/',
 );
 
 drinkerRouter.post(
-    '/',
+    '/:userId'
 );
 
 drinkerRouter.put(

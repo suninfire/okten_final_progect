@@ -2,13 +2,12 @@ const Joi = require('joi');
 
 const {statusCodes} = require('../constants');
 const {ApiError} = require('../errors');
-const {phoneValidator} = require("./user.validator");
+const {phoneValidator} = require('./user.validator');
 
 
-const nameValidator = Joi.string().alphanum()
+const nameValidator = Joi.string()
     .min(2)
-    .max(35)
-    .error(new ApiError('Name not valid', statusCodes.BAD_REQUEST));
+    .error(new ApiError('Pub name not valid', statusCodes.BAD_REQUEST));
 
 
 const locationValidator = Joi.string();

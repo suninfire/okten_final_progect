@@ -7,7 +7,7 @@ tidingRouter.get(
 );
 
 tidingRouter.post(
-    '/',
+    '/:pubId',
 );
 
 tidingRouter.put(

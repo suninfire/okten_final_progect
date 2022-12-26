@@ -7,7 +7,7 @@ responseRouter.get(
 );
 
 responseRouter.post(
-    '/',
+    '/:userId/:pubId',
 );
 
 responseRouter.put(
