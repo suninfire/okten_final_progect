@@ -1,25 +1,24 @@
 const {Router} = require('express');
 
 const { pubController } = require('../controllers');
-const { commonMdlwr, pubMdlwr} = require('../middlewares');
-const {newPubValidator} = require('../validators/pub.validator');
+const { commonMdlwr, pubMdlwr, userMdlwr} = require('../middlewares');
+const {newPubValidator, updatePubValidator} = require('../validators/pub.validator');
 
 const pubRouter = Router();
 
 pubRouter.get(
-    '/',
+    '/', // юзер,адмін,суперадмін
+    pubController.getAllPubs
 );
 
-pubRouter.get(
+pubRouter.get( //тільки для супер адміна
+    '/expects',
+    pubController.getPubsForExpect
+);
+
+pubRouter.get( // юзер,адмін,суперадмін
     '/:pubId',
-);
-
-pubRouter.get(
-    '/:pubId/tidings',
-);
-
-pubRouter.get(
-    '/:pubId/responses',
+    pubController.getPubById
 );
 
 pubRouter.post(
@@ -29,13 +28,28 @@ pubRouter.post(
     pubController.createPub
 );
 
-pubRouter.put(
+pubRouter.patch( // адмін,суперадмін
     '/:pubId',
+    commonMdlwr.checkIsBodyValid(updatePubValidator),
+    pubController.updatePubById
 );
 
 
-pubRouter.delete(
+pubRouter.delete( // адмін,суперадмін
     '/:pubId',
+    pubController.deletePubById
+);
+
+
+
+pubRouter.get( // юзер,адмін,суперадмін
+    '/tidings/:pubId',
+    pubController.getAllTidings
+);
+
+pubRouter.get( // юзер,адмін,суперадмін
+    '/responses/:pubId',
+    pubController.getAllResponses
 );
 
 

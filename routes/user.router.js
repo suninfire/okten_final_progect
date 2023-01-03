@@ -10,14 +10,6 @@ userRouter.get( //тільки для супер адміна
     '/',
 );
 
-userRouter.get( //тільки для супер адміна
-    '/expect',
-);
-
-userRouter.get( //тільки для супер адміна
-    '/expect/:pubId',
-);
-
 userRouter.get(
     '/:userId',
 );

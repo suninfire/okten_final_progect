@@ -40,7 +40,8 @@ const updatePubValidator = Joi.object({
     openTime : timeValidator,
     closeTime : timeValidator,
     tags: tagValidator,
-    averageCheck: Joi.number()
+    averageCheck: Joi.number(),
+    expect: Joi.boolean()
 });
 
 

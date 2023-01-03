@@ -9,7 +9,6 @@ module.exports = {
             const {userId} = req.params;
 
             const userByEmail = await userService.getOneByParams({email, _id: {$ne: userId}});
-            // _id: { $ne: userId } - search all except THIS userId
 
             if (userByEmail && userByEmail._id.toString() !== userId) {
                 return next(new ApiError('This email already exist', statusCodes.CONFLICT));
@@ -20,4 +19,6 @@ module.exports = {
             next(e);
         }
     },
+
+
 };
