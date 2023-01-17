@@ -38,12 +38,29 @@ module.exports = {
     },
 
     updateUserById: async (req, res, next) => {
+
         try {
             const {userId} = req.params;
 
             const user = await userService.updateUserById(userId, req.body);
 
             res.json(user);
+        } catch (e) {
+            next(e);
+        }
+    },
+
+    updateUserAfterExpectPub: async (req, res, next) => {
+        const { pubId } = req.params;
+
+        try {
+            const pub = await pubService.getOneByParams({_id: pubId});
+
+            const body = {adminPhone: pub.contacts,administrator:true,pub:pubId};
+
+            await userService.updateUserById(pub.administrator, body )
+
+           next()
         } catch (e) {
             next(e);
         }

@@ -1,4 +1,4 @@
-const { pubService } = require('../services');
+const { pubService, userService } = require('../services');
 const { statusCodes}  = require('../constants');
 
 module.exports = {
@@ -35,9 +35,9 @@ module.exports = {
     },
 
     createPub: async (req, res, next) => {
+
         try {
             const pub = await pubService.createPub({...req.body, administrator: req.params.userId});
-
             res.status(statusCodes.CREATE).json(pub);
         } catch (e) {
             next(e);
@@ -55,6 +55,8 @@ module.exports = {
             next(e);
         }
     },
+
+
 
     deletePubById: async (req, res, next) => {
         try {

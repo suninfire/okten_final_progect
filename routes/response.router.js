@@ -1,4 +1,5 @@
 const {Router} = require('express');
+const {responseController} = require('../controllers/response.controller');
 
 const responseRouter = Router();
 

@@ -1,7 +1,7 @@
 const {Router} = require('express');
 
-const { pubController } = require('../controllers');
-const { commonMdlwr, pubMdlwr, userMdlwr} = require('../middlewares');
+const { pubController, userController} = require('../controllers');
+const { commonMdlwr, pubMdlwr,} = require('../middlewares');
 const {newPubValidator, updatePubValidator} = require('../validators/pub.validator');
 
 const pubRouter = Router();
@@ -13,7 +13,13 @@ pubRouter.get(
 
 pubRouter.get( //тільки для супер адміна
     '/expects',
-    pubController.getPubsForExpect
+    pubController.getPubsForExpect,
+);
+
+pubRouter.patch( //тільки для супер адміна
+    '/expects/:pubId',
+    userController.updateUserAfterExpectPub,
+    pubController.updatePubById,
 );
 
 pubRouter.get( // юзер,адмін,суперадмін

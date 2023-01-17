@@ -9,7 +9,7 @@ const pubSchema = new Schema ({
     location: {type: String, trim: true, required: true},
     openTime:{type: String, trim: true, required: true},
     closeTime:{type: String, trim: true, required: true},
-    contacts:{type: [String],trim:true, select:true},
+    contacts:{type: String,trim:true, select:true},
     tidings:{ type: [Schema.Types.ObjectId],ref:'tiding', select:true},
     responses: { type: [Schema.Types.ObjectId],ref:'response',select:true},
     views:{ type: Number},
