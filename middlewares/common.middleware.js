@@ -20,4 +20,15 @@ module.exports = {
         }
     },
 
+    // checkIsPermit: () => async (req,res,next) => {
+    //     try{
+    //         const {} = req[from];
+    //
+    //         if ()
+    //         next();
+    //     } catch (e) {
+    //        next(e);
+    //     }
+    // },
+
 };

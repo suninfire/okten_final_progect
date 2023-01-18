@@ -4,4 +4,6 @@ module.exports = {
 
     NO_REPLY_EMAIL: process.env.NO_REPLY_EMAIL || 'example@gmail.com',
     NO_REPLY_PASSWORD: process.env.NO_REPLY_PASSWORD || 'testTest11',
+
+    SUPER_ADMIN_EMAIL: process.env.SUPER_ADMIN_EMAIL ||  'example@gmail.com'
 };
