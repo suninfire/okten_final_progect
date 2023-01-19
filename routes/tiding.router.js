@@ -3,6 +3,10 @@ const {Router} = require('express');
 const tidingRouter = Router();
 
 tidingRouter.get(
+    '/',
+);
+
+tidingRouter.get(
     '/:tidingId',
 );
 
@@ -10,7 +14,7 @@ tidingRouter.post(
     '/:pubId',
 );
 
-tidingRouter.put(
+tidingRouter.patch(
     '/:tidingId',
 );
 

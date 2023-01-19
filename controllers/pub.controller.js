@@ -63,27 +63,8 @@ module.exports = {
             const {pubId} = req.params;
 
             await pubService.deletePubById(pubId);
-
+            //оновити юзеру поле адмін і поле паб і поле відгуки + видалити відгуки і новини цього пабу
             res.sendStatus(statusCodes.NO_CONTENT);
-        } catch (e) {
-            next(e);
-        }
-    },
-
-    getAllTidings: async (req, res, next) => {
-        const {pubId} = req.params;
-        try {
-            const tidings = await pubService.getAllT({pub: pubId});
-            res.json(tidings);
-        } catch (e) {
-            next(e);
-        }
-    },
-    getAllResponses: async (req, res, next) => {
-        const {pubId} = req.params;
-        try {
-            const responses = await pubService.getAllR({pub: pubId});
-            res.json(responses);
         } catch (e) {
             next(e);
         }

@@ -1,15 +1,11 @@
 const {Router} = require('express');
+
 const {responseController} = require('../controllers');
 const {commonMdlwr} = require('../middlewares');
-
 const {newResponseValidator} = require('../validators/response.validator');
 
 const responseRouter = Router();
 
-responseRouter.get(
-    '/:responseId',
-    // responseController.getOneById
-);
 
 responseRouter.post(
     '/:userId/:pubId',
@@ -17,12 +13,15 @@ responseRouter.post(
     responseController.CreateResponse
 );
 
-responseRouter.put(
+responseRouter.patch(
     '/:responseId',
+    commonMdlwr.checkIsBodyValid(newResponseValidator),
+    responseController.updateResponseById
 );
 
 responseRouter.delete(
     '/:responseId',
+    responseController.deleteResponseById
 );
 
 module.exports = responseRouter;

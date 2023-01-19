@@ -16,12 +16,6 @@ pubRouter.get( //тільки для супер адміна
     pubController.getPubsForExpect,
 );
 
-pubRouter.patch( //тільки для супер адміна
-    '/expects/:pubId',
-    userController.updateUserAfterExpectPub,
-    pubController.updatePubById,
-);
-
 pubRouter.get( // юзер,адмін,суперадмін
     '/:pubId',
     pubController.getPubById
@@ -40,23 +34,16 @@ pubRouter.patch( // адмін,суперадмін
     pubController.updatePubById
 );
 
+pubRouter.patch( //тільки для супер адміна
+    '/expects/:pubId',
+    userController.updateUserAfterExpectPub,
+    pubController.updatePubById,
+);
+
 
 pubRouter.delete( // адмін,суперадмін
     '/:pubId',
     pubController.deletePubById
 );
-
-
-
-pubRouter.get( // юзер,адмін,суперадмін
-    '/tidings/:pubId',
-    pubController.getAllTidings
-);
-
-pubRouter.get( // юзер,адмін,суперадмін
-    '/responses/:pubId',
-    pubController.getAllResponses
-);
-
 
 module.exports = pubRouter;
