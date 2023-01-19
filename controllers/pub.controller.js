@@ -1,4 +1,4 @@
-const { pubService, userService } = require('../services');
+const { pubService, userService,responseService } = require('../services');
 const { statusCodes}  = require('../constants');
 
 module.exports = {
@@ -57,13 +57,28 @@ module.exports = {
     },
 
 
-
+    //TODO
     deletePubById: async (req, res, next) => {
         try {
             const {pubId} = req.params;
 
-            await pubService.deletePubById(pubId);
-            //оновити юзеру поле адмін і поле паб і поле відгуки + видалити відгуки і новини цього пабу
+            const pub = await pubService.getOneByParams({_id: pubId});
+
+            const userId = pub.administrator.valueOf();
+
+            const responses = pub.responses;
+            console.log(responses);
+
+            await responseService.deleteResponseById(responses);
+
+
+            // const tidings = pub.tidings;
+            // await tidings.forEach(tiding => responseService.deleteTidingById(tiding.valueOf()));
+
+            // await pubService.deletePubById(pubId);
+            //
+            // await userService.updateUserById(userId,{administrator: false, pub: []});
+
             res.sendStatus(statusCodes.NO_CONTENT);
         } catch (e) {
             next(e);

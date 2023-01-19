@@ -5,13 +5,6 @@ module.exports = {
         return Pub.find(filter)
     },
 
-    getAllT(filter = {}){
-        return Tiding.find(filter)
-    },
-
-    getAllR(filter = {}){
-        return Response.find(filter)
-    },
 
     getOneByParams(params={}) {
         return Pub.findOne(params);
