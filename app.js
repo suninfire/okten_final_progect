@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended:true}));
 
 // app.use('/auth',authRouter);
 // app.use('/drinker',drinkerRouter);
-// app.use('/tiding',tidingRouter);
+app.use('/tiding',tidingRouter);
 app.use('/pub',pubRouter);
 app.use('/response',responseRouter);
 app.use('/user',userRouter);

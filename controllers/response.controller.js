@@ -3,6 +3,7 @@ const {responseService, userService, pubService} = require('../services');
 const {statusCodes} = require('../constants');
 
 module.exports = {
+
     CreateResponse: async (req, res, next) => {
 
         const userId = req.params.userId;
@@ -67,4 +68,4 @@ module.exports = {
             next(e);
         }
     },
-}
+};
