@@ -1,4 +1,4 @@
-const { userService,tokenService, pubService} = require('../services');
+const { userService,tokenService, pubService, responseService, tidingService} = require('../services');
 const { statusCodes}  = require('../constants');
 
 module.exports = {
@@ -55,8 +55,11 @@ module.exports = {
 
         try {
             const pub = await pubService.getOneByParams({_id: pubId});
+            const user = await userService.getOneByParams({_id: pub.administrator.valueOf()})
+            const pubs = user.pub;
+            await pubs.push(pub);
 
-            const body = {adminPhone: pub.contacts,administrator:true,pub:pubId};
+            const body = {adminPhone: pub.contacts,administrator:true,pub:pubs};
 
             await userService.updateUserById(pub.administrator, body )
 
@@ -70,6 +73,14 @@ module.exports = {
    deleteUserById: async (req, res, next) => {
        try {
            const {userId} = req.params;
+
+           // const user = await userService.getOneByParams({_id:userId});
+           // if (user.administrator === true){
+           //     await pubService.deleteMany({administrator: userId});
+           // };
+
+           await responseService.deleteMany({user: userId});
+           await tidingService.deleteMany({user: userId});
 
            await userService.deleteUserById(userId);
 

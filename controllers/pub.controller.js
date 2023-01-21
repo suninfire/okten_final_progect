@@ -1,4 +1,4 @@
-const { pubService, userService,responseService } = require('../services');
+const { pubService, userService,responseService, tidingService } = require('../services');
 const { statusCodes}  = require('../constants');
 
 module.exports = {
@@ -57,27 +57,39 @@ module.exports = {
     },
 
 
-    //TODO
+    //TODO recurs to delete user's pub's responses
     deletePubById: async (req, res, next) => {
+
         try {
             const {pubId} = req.params;
 
             const pub = await pubService.getOneByParams({_id: pubId});
 
-            const userId = pub.administrator.valueOf();
+            const administratorId = pub.administrator.valueOf();
+            const administrator = await userService.getOneByParams({_id: administratorId});
+            const pubs = administrator.pub;
+            const updatedPubs = await pubs.filter(pub => pub.valueOf() !== pubId);
 
-            const responses = pub.responses;
-            console.log(responses);
+            function isPubAdmin (pubs) {
+                if (pubs === []) {
+                    return false;
+                } else {
+                    return true;
+                }};
 
-            await responseService.deleteResponseById(responses);
+            const isAdmin = isPubAdmin(pubs);
+
+            await userService.updateUserById(administratorId,{administrator: isAdmin,pub: updatedPubs});
+
+            await responseService.deleteMany({pub: pubId});
+            await tidingService.deleteMany({pub: pubId});
+
+            const responses = pub.responses.valueOf();
 
 
-            // const tidings = pub.tidings;
-            // await tidings.forEach(tiding => responseService.deleteTidingById(tiding.valueOf()));
+            const tidings = pub.tidings.valueOf();
 
-            // await pubService.deletePubById(pubId);
-            //
-            // await userService.updateUserById(userId,{administrator: false, pub: []});
+            await pubService.deletePubById(pubId);
 
             res.sendStatus(statusCodes.NO_CONTENT);
         } catch (e) {

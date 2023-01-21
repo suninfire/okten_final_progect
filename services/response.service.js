@@ -22,4 +22,10 @@ module.exports = {
     deleteResponseById(responseId) {
         return Response.deleteOne({_id: responseId});
     },
+
+    deleteMany(filter) {
+        return Response.deleteMany(filter);
+    },
+
+
 }

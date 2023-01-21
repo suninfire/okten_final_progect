@@ -21,4 +21,8 @@ module.exports = {
     deletePubById(pubId) {
         return Pub.deleteOne({_id: pubId});
     },
+
+    deleteMany(filter) {
+        return Pub.deleteMany(filter);
+    },
 };

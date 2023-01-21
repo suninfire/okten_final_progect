@@ -18,18 +18,6 @@ userRouter.get(
     userController.getUserById
 );
 
-userRouter.get(
-    '/:userId/responses',
-);
-
-userRouter.get(
-    '/:userId/favPubs',
-);
-
-userRouter.get(
-    '/:userId/drinker',
-);
-
 userRouter.post(
     '/',
     commonMdlwr.checkIsBodyValid(newUserValidator),
