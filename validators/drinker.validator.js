@@ -7,8 +7,8 @@ const {ApiError} = require('../errors');
 
 const dateValidator = Joi.string()
     .lowercase()
-    .regex(/(#+[а-яіїї0-9(_)]{1,})/)
-    .error(new ApiError('tag not valid', statusCodes.BAD_REQUEST));
+    // .regex(/(#+[а-яіїї0-9(_)]{1,})/)
+    .error(new ApiError('date not valid', statusCodes.BAD_REQUEST));
 
 const timeValidator = Joi.string()
     .regex(/([01]?[0-9]|2[0-3]):[0-5][0-9]/)

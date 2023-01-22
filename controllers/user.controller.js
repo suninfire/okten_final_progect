@@ -1,4 +1,4 @@
-const { userService,tokenService, pubService, responseService, tidingService} = require('../services');
+const { userService,tokenService, pubService, responseService, tidingService,drinkerService} = require('../services');
 const { statusCodes}  = require('../constants');
 
 module.exports = {
@@ -81,6 +81,7 @@ module.exports = {
 
            await responseService.deleteMany({user: userId});
            await tidingService.deleteMany({user: userId});
+           await drinkerService.deleteManyDrinkers({user: userId});
 
            await userService.deleteUserById(userId);
 

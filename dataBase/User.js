@@ -8,10 +8,10 @@ const userSchema = new Schema ({
     adminPhone :{ type: String,default:' '},
     email: { type: String, trim: true, lowercase: true, required:true, unique:true},
     password: { type:String, required: true},
+    drinker: { type: [Schema.Types.ObjectId],ref:'drinker',select:true},
     favoritePubs: { type: [Schema.Types.ObjectId],ref:'pub', select:false},
     responses: { type: [Schema.Types.ObjectId],ref:'response',select:true},
     tidings:{ type: [Schema.Types.ObjectId],ref:'tiding', select:true},
-    drinker: { type: Schema.Types.ObjectId,ref:'drinker',select:true},
     messages: { type: [String],select:true},
 }, {
 
