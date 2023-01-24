@@ -1,4 +1,3 @@
-const http = require('http');
 const express = require('express');
 require('dotenv').config();
 const mongoose = require('mongoose');
@@ -13,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-// app.use('/auth',authRouter);
+app.use('/auth',authRouter);
 app.use('/drinker',drinkerRouter);
 app.use('/tiding',tidingRouter);
 app.use('/pub',pubRouter);

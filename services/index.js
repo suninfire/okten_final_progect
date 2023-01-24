@@ -1,4 +1,6 @@
 module.exports = {
+   actionTokenService: require('./actionToken.service'),
+   authService: require('./auth.service'),
    drinkerService: require('./drinker.service'),
    pubService: require('./pub.service'),
    responseService: require('./response.service'),
