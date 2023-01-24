@@ -74,13 +74,9 @@ module.exports = {
        try {
            const {userId} = req.params;
 
-           // const user = await userService.getOneByParams({_id:userId});
-           // if (user.administrator === true){
-           //     await pubService.deleteMany({administrator: userId});
-           // };
-
            await responseService.deleteMany({user: userId});
            await tidingService.deleteMany({user: userId});
+
            await drinkerService.deleteManyDrinkers({user: userId});
 
            await userService.deleteUserById(userId);

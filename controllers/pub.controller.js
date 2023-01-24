@@ -57,7 +57,6 @@ module.exports = {
     },
 
 
-    //TODO recurs to delete user's pub's responses
     deletePubById: async (req, res, next) => {
 
         try {
@@ -67,17 +66,18 @@ module.exports = {
 
             const administratorId = pub.administrator.valueOf();
             const administrator = await userService.getOneByParams({_id: administratorId});
-            const pubs = administrator.pub;
-            const updatedPubs = await pubs.filter(pub => pub.valueOf() !== pubId);
+            const adminPubs = administrator.pub;
+            const updatedPubs = adminPubs.filter(pub => pub.valueOf() !== pubId);
 
             function isPubAdmin (pubs) {
-                if (pubs === []) {
-                    return false;
-                } else {
+                if (pubs.length > 0) {
                     return true;
+                } else {
+                    return false;
                 }};
 
-            const isAdmin = isPubAdmin(pubs);
+           const isAdmin = isPubAdmin(updatedPubs);
+            console.log(isAdmin);
 
             await userService.updateUserById(administratorId,{administrator: isAdmin,pub: updatedPubs});
 
@@ -85,9 +85,16 @@ module.exports = {
             await tidingService.deleteMany({pub: pubId});
 
             const responses = pub.responses.valueOf();
-
-
             const tidings = pub.tidings.valueOf();
+            const users = await userService.getAllUsers(req.body);
+            for (const user of users){
+               const userResponses = user.responses;
+               const userTidings = user.tidings;
+               const userId = user._id;
+               const updatedUserResponses = userResponses.filter(value => !responses.includes(value));
+               const updatedUserTidings = userTidings.filter(value => !tidings.includes(value));
+               await userService.updateUserById(userId,{responses:updatedUserResponses,tidings: updatedUserTidings});
+            };
 
             await pubService.deletePubById(pubId);
 
