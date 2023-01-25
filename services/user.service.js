@@ -1,6 +1,7 @@
 const { User } = require('../dataBase');
 
 module.exports = {
+
     getAllUsers(filter={}){
         return User.find(filter)
     },
@@ -20,5 +21,4 @@ module.exports = {
     deleteUserById(userId) {
         return User.deleteOne({_id: userId});
     },
-    
 };

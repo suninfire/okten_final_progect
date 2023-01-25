@@ -1,12 +1,14 @@
-
-const {responseService, userService, pubService,tidingService} = require('../services');
-const {statusCodes} = require('../constants');
+const { userService, pubService,tidingService } = require('../services');
+const { statusCodes } = require('../constants');
 
 module.exports = {
     getAllTidings: async (req, res, next) => {
+
         try {
             const tidings = await tidingService.getAllTidings(req.body);
+
             res.json(tidings);
+
         } catch (e) {
             next(e);
         }
@@ -17,10 +19,10 @@ module.exports = {
         const {tidingId} = req.params;
 
         try {
-
             const tiding = await tidingService.getOneTiding({_id: tidingId});
 
             res.json(tiding);
+
         } catch (e) {
             next(e);
         }
@@ -32,7 +34,6 @@ module.exports = {
         const pubId = req.params.pubId;
 
         try {
-
             const tiding = await tidingService.createTiding({
                 ...req.body,
                 user: userId,
@@ -62,6 +63,7 @@ module.exports = {
             const tiding = await tidingService.updateTidingById(tidingId, req.body);
 
             res.json(tiding);
+
         } catch (e) {
             next(e);
         }
@@ -85,8 +87,8 @@ module.exports = {
             const pubTidings = await tidingService.getTidingsByParams({pub: pubId});
             await pubService.updatePubById(pubId,{tidings: [...pubTidings]});
 
-
             res.sendStatus(statusCodes.NO_CONTENT);
+
         } catch (e) {
             next(e);
         }

@@ -1,28 +1,22 @@
-const {authService,tokenService, emailService, actionTokenService, userService } = require('../services');
-const {statusCodes, emailActionEnum, tokenTypeEnum, constant} = require('../constants');
-
-
+const { authService,tokenService } = require('../services');
+const { statusCodes } = require('../constants');
 
 module.exports = {
 
     login: async (req,res,next) => {
         try {
-            const { password, email } = req.body;
+            const { password } = req.body;
+            const {password: hashPassword, _id: userId} = req.user;
 
-            const user = await userService.getOneByParams({email: email});
-            const  id  = user._id.valueOf();
-            const pass = user.password;
+            await tokenService.comparePasswords(password,hashPassword);
 
-            await tokenService.comparePasswords(password,pass);
+            const authToken = tokenService.createAuthToken({userId});
 
-            const authToken = tokenService.createAuthToken({id});
-
-            await authService.saveTokens({...authToken, user: id});
-
+            await authService.saveTokens({...authToken, user: userId});
 
             res.json({
                 ...authToken,
-                user: req.user
+                user: userId
             });
         } catch (e) {
             next(e);
@@ -36,28 +30,27 @@ module.exports = {
             await authService.deleteOneByParams({user: user._id, access_token});
 
             res.sendStatus(statusCodes.NO_CONTENT);
+
         } catch (e) {
             next(e);
         }
     },
 
-    // refresh: async (req,res,next) => {
-    //     try {
-    //
-    //         const { user, refresh_token } = req.tokenInfo;
-    //
-    //         await authService.deleteOneByParams({refresh_token});
-    //
-    //
-    //         const authToken = tokenService.createAuthToken({_id: user});
-    //
-    //         const newTokens = await authService.saveTokens({...authToken, user});
-    //
-    //         res.json(newTokens);
-    //     } catch (e) {
-    //         next(e);
-    //     }
-    // },
-    //
+    refresh: async (req,res,next) => {
+        try {
 
+            const { user, refresh_token } = req.tokenInfo;
+
+            await authService.deleteOneByParams({refresh_token});
+
+            const authToken = tokenService.createAuthToken({_id: user});
+
+            const newTokens = await authService.saveTokens({...authToken, user});
+
+            res.json(newTokens);
+
+        } catch (e) {
+            next(e);
+        }
+    },
 };

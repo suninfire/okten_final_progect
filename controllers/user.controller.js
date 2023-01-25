@@ -3,9 +3,12 @@ const { statusCodes}  = require('../constants');
 
 module.exports = {
     getAllUsers: async (req, res, next) => {
+
         try {
             const users = await userService.getAllUsers(req.body);
+
             res.json(users);
+
         } catch (e) {
             next(e);
         }
@@ -16,10 +19,10 @@ module.exports = {
         const {userId} = req.params;
 
         try {
-
             const user = await userService.getOneByParams({_id: userId});
 
             res.json(user);
+
         } catch (e) {
             next(e);
         }
@@ -32,6 +35,7 @@ module.exports = {
             const user = await userService.createUser({...req.body, password: hashPassword });
 
             res.status(statusCodes.CREATE).json(user);
+
         } catch (e) {
             next(e);
         }
@@ -45,12 +49,14 @@ module.exports = {
             const user = await userService.updateUserById(userId, req.body);
 
             res.json(user);
+
         } catch (e) {
             next(e);
         }
     },
 
     updateUserAfterExpectPub: async (req, res, next) => {
+
         const { pubId } = req.params;
 
         try {
@@ -71,17 +77,18 @@ module.exports = {
 
 
    deleteUserById: async (req, res, next) => {
+
        try {
            const {userId} = req.params;
 
            await responseService.deleteMany({user: userId});
            await tidingService.deleteMany({user: userId});
-
            await drinkerService.deleteManyDrinkers({user: userId});
 
            await userService.deleteUserById(userId);
 
            res.sendStatus(statusCodes.NO_CONTENT);
+
        } catch (e) {
            next(e);
        }

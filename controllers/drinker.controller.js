@@ -1,11 +1,15 @@
-const {userService, pubService,drinkerService} = require('../services');
-const {statusCodes} = require('../constants');
+const { userService,drinkerService } = require('../services');
+const { statusCodes } = require('../constants');
 
 module.exports = {
+
     getAllDrinkers: async (req, res, next) => {
+
         try {
             const drinkers = await drinkerService.getAllDrinkers(req.body);
+
             res.json(drinkers);
+
         } catch (e) {
             next(e);
         }
@@ -16,10 +20,10 @@ module.exports = {
         const {drinkerId} = req.params;
 
         try {
-
             const drinker = await drinkerService.getOneDrinker({_id: drinkerId});
 
             res.json(drinker);
+
         } catch (e) {
             next(e);
         }
@@ -31,7 +35,6 @@ module.exports = {
         const pubId = req.params.pubId;
 
         try {
-
             const drinker = await drinkerService.createDrinker({
                 ...req.body,
                 pub: pubId,
@@ -57,12 +60,14 @@ module.exports = {
             const drinker = await drinkerService.updateDrinkerById({_id:drinkerId}, req.body);
 
             res.json(drinker);
+
         } catch (e) {
             next(e);
         }
     },
 
     deleteDrinkerById: async (req, res, next) => {
+
         try {
             const { drinkerId } = req.params;
 
@@ -73,9 +78,11 @@ module.exports = {
             await drinkerService.deleteDrinkerById({_id:drinkerId});
 
             const userDrinker = await drinkerService.getDrinkersByParams({meetOwner: userId});
+
             await userService.updateUserById(userId,{drinker: [...userDrinker]});
 
             res.sendStatus(statusCodes.NO_CONTENT);
+
         } catch (e) {
             next(e);
         }

@@ -3,9 +3,10 @@ const {statusCodes} = require('../constants');
 
 
 module.exports = {
-    checkIsBodyValid: (validatorType) => async (req, res, next) => {
-        try {
 
+    checkIsBodyValid: (validatorType) => async (req, res, next) => {
+
+        try {
             const validate = await validatorType.validate(req.body);
 
             if (validate.error) {
@@ -19,16 +20,4 @@ module.exports = {
             next(e);
         }
     },
-
-    // checkIsPermit: () => async (req,res,next) => {
-    //     try{
-    //         const {} = req[from];
-    //
-    //         if ()
-    //         next();
-    //     } catch (e) {
-    //        next(e);
-    //     }
-    // },
-
 };

@@ -4,6 +4,7 @@ const {pubService} = require('../services');
 
 module.exports = {
     checkIsPubUniq: async (req, res, next) => {
+
         try {
             const {name} = req.body;
             const {pubId} = req.params;

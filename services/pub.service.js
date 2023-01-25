@@ -1,6 +1,7 @@
-const { Pub, Tiding, Response} = require('../dataBase');
+const { Pub } = require('../dataBase');
 
 module.exports = {
+
     getAll(filter = {}){
         return Pub.find(filter)
     },
@@ -15,7 +16,7 @@ module.exports = {
     },
 
     updatePubById(pubId, newPubObject) {
-        return Pub.findOneAndUpdate({_id: pubId}, newPubObject, {new: true}); // new:true - returned new object(user)
+        return Pub.findOneAndUpdate({_id: pubId}, newPubObject, {new: true});
     },
 
     deletePubById(pubId) {

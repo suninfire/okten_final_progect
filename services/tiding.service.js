@@ -2,6 +2,7 @@ const { Tiding } = require('../dataBase');
 
 
 module.exports = {
+
     getAllTidings(filter={}){
         return Tiding.find(filter)
     },
@@ -28,5 +29,5 @@ module.exports = {
 
     deleteMany(filter) {
         return Tiding.deleteMany(filter);
-    }
+    },
 };

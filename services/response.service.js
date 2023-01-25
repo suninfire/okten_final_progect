@@ -1,4 +1,4 @@
-const { Response, User} = require('../dataBase');
+const { Response } = require('../dataBase');
 
 
 module.exports = {
@@ -26,6 +26,4 @@ module.exports = {
     deleteMany(filter) {
         return Response.deleteMany(filter);
     },
-
-
-}
+};

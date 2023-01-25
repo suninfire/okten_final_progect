@@ -2,6 +2,7 @@ const { Drinker } = require('../dataBase');
 
 
 module.exports = {
+
     getAllDrinkers(filter={}){
         return Drinker.find(filter)
     },
@@ -28,5 +29,5 @@ module.exports = {
 
     deleteManyDrinkers(filter) {
         return Drinker.deleteMany(filter);
-    }
+    },
 };

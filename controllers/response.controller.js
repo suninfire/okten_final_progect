@@ -1,4 +1,3 @@
-
 const {responseService, userService, pubService} = require('../services');
 const {statusCodes} = require('../constants');
 
@@ -10,7 +9,6 @@ module.exports = {
         const pubId = req.params.pubId;
 
         try {
-
             const response = await responseService.createResponse({
                 ...req.body,
                 user: userId,
@@ -40,12 +38,14 @@ module.exports = {
             const response = await responseService.updateResponseById(responseId, req.body);
 
             res.json(response);
+
         } catch (e) {
             next(e);
         }
     },
 
     deleteResponseById: async (req, res, next) => {
+
         try {
             const { responseId } = req.params;
 
@@ -64,6 +64,7 @@ module.exports = {
 
 
             res.sendStatus(statusCodes.NO_CONTENT);
+
         } catch (e) {
             next(e);
         }

@@ -3,10 +3,12 @@ const {ApiError} = require('../errors');
 const {authService, tokenService} = require('../services');
 
 module.exports = {
+
     checkIsAccessToken: async (req,res,next) => {
+
         try {
 
-            const access_token = await req.get(tokenTypeEnum.AUTHORISATION); // метод гет даэ можливысть дыстати щось з хедера
+            const access_token = await req.get(tokenTypeEnum.AUTHORISATION);
 
             if (!access_token) {
                 return next (new ApiError('No token', statusCodes.UNAUTHORIZED));
@@ -21,6 +23,7 @@ module.exports = {
             }
 
             req.tokenInfo = tokenInfo;
+
             next();
         } catch (e) {
             next(e);
@@ -28,8 +31,9 @@ module.exports = {
     },
 
     checkIsRefreshToken: async (req,res,next) => {
+
         try {
-            const refresh_token = req.get(constant.AUTHORISATION); // метод гет даэ можливысть дыстати щось з хедера
+            const refresh_token = req.get(constant.AUTHORISATION);
 
             if (!refresh_token) {
                 return next (new ApiError('No token', statusCodes.UNAUTHORIZED));
@@ -44,6 +48,7 @@ module.exports = {
             }
 
             req.tokenInfo = tokenInfo;
+
             next();
         } catch (e) {
             next(e);
