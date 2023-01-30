@@ -1,5 +1,4 @@
 module.exports = {
-  ActionToken: require('./ActionToken'),
   Auth: require('./Auth'),
   Drinker: require('./Drinker'),
   Pub: require('./Pub'),

@@ -1,23 +1,28 @@
 const {Router} = require('express');
 
 const { userController } = require('../controllers');
-const { commonMdlwr,userMdlwr } = require('../middlewares');
+const { commonMdlwr,userMdlwr,authMdlwr } = require('../middlewares');
 const { newUserValidator, updateUserValidator} = require('../validators/user.validator');
 
 const userRouter = Router();
 
-userRouter.get( //тільки для супер адміна
+userRouter.get(
     '/',
+    authMdlwr.checkIsAccessToken,
+    userMdlwr.checkIsSuperAdmin,
     userController.getAllUsers
 );
 
 userRouter.get(
     '/:userId',
+    authMdlwr.checkIsAccessToken,
+    userMdlwr.checkIsPermit,
     userController.getUserById
 );
 
 userRouter.post(
     '/',
+    authMdlwr.checkIsAccessToken,
     commonMdlwr.checkIsBodyValid(newUserValidator),
     userMdlwr.checkIsEmailUniq,
     userController.createUser
@@ -26,6 +31,8 @@ userRouter.post(
 
 userRouter.patch(
     '/:userId',
+    authMdlwr.checkIsAccessToken,
+    userMdlwr.checkIsPermit,
     commonMdlwr.checkIsBodyValid(updateUserValidator),
     userController.updateUserById
 );
@@ -33,6 +40,8 @@ userRouter.patch(
 
 userRouter.delete(
     '/:userId',
+    authMdlwr.checkIsAccessToken,
+    userMdlwr.checkIsPermit,
     userController.deleteUserById
 );
 

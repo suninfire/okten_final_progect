@@ -1,4 +1,5 @@
 const {ApiError} = require('../errors');
+const { config } = require('../config');
 const {statusCodes} = require('../constants');
 const {userService} = require('../services');
 
@@ -40,4 +41,40 @@ module.exports = {
             next(e);
         }
 },
+
+    checkIsSuperAdmin: async (req, res, next) => {
+
+        try {
+            const user = req.tokenInfo.user;
+            const userEmail = user.email;
+
+            if (userEmail !== config.SUPER_ADMIN_EMAIL ) {
+                return next(new ApiError('This option is only for SuperAdmin', statusCodes.BAD_REQUEST));
+            }
+
+            next();
+        } catch (e) {
+            next(e);
+        }
+    },
+
+    checkIsPermit: async (req, res, next) => {
+
+        try {
+            const user = req.tokenInfo.user;
+            const id = user._id.valueOf();
+            const email = user.email;
+
+            const {userId} = req.params;
+
+            if (id !== userId && email !== config.SUPER_ADMIN_EMAIL) {
+                return next(new ApiError('You dont have permission', statusCodes.BAD_REQUEST));
+            }
+
+            next();
+
+        } catch (e) {
+            next(e)
+        }
+    }
 };

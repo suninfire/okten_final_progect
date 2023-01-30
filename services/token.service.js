@@ -34,15 +34,11 @@ module.exports = {
         try {
             let word;
 
-            switch ( tokenType ) {
-                case tokenTypeEnum.ACCESS:
-                    word = config.ACCESS_SECRET_WORD;
-                    break;
-                case tokenTypeEnum.REFRESH:
-                    word = config.REFRESH_SECRET_WORD;
-                    break;
-                default:
-                    throw new Error('Wrong word');
+            if (tokenType === tokenTypeEnum.ACCESS) {
+                word = config.ACCESS_SECRET_WORD;
+            }
+            if (tokenType === tokenTypeEnum.REFRESH) {
+                word = config.REFRESH_SECRET_WORD;
             }
 
             return jwt.verify(token, word);
@@ -50,17 +46,4 @@ module.exports = {
             throw new ApiError('Token not valid', statusCodes.UNAUTHORIZED);
         }
     },
-
-    //
-    // createActionToken: (tokenType, payload = {}) => {
-    //     let expiresIn = '1d';
-    //
-    //     if (tokenType === tokenTypeEnum.FORGOT_PASSWORD) {
-    //         expiresIn = '7d';
-    //     }
-    //
-    //     return jwt.sign(payload, config.ACTION_TOKEN_SECRET, {expiresIn} );
-    // },
-    //
-    //
 };
