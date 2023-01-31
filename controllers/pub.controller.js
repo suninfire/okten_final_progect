@@ -75,6 +75,7 @@ module.exports = {
             const pub = await pubService.getOneByParams({_id: pubId});
 
             const administratorId = pub.administrator.valueOf();
+
             const administrator = await userService.getOneByParams({_id: administratorId});
             const adminPubs = administrator.pub;
             const updatedPubs = adminPubs.filter(pub => pub.valueOf() !== pubId);

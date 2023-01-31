@@ -22,7 +22,6 @@ userRouter.get(
 
 userRouter.post(
     '/',
-    authMdlwr.checkIsAccessToken,
     commonMdlwr.checkIsBodyValid(newUserValidator),
     userMdlwr.checkIsEmailUniq,
     userController.createUser

@@ -1,4 +1,4 @@
-const { constant, statusCodes, tokenTypeEnum } = require('../constants');
+const { statusCodes, tokenTypeEnum } = require('../constants');
 const {ApiError} = require('../errors');
 const {authService, tokenService} = require('../services');
 
@@ -33,7 +33,7 @@ module.exports = {
     checkIsRefreshToken: async (req,res,next) => {
 
         try {
-            const refresh_token = req.get(constant.AUTHORISATION);
+            const refresh_token = req.get(tokenTypeEnum.AUTHORISATION);
 
             if (!refresh_token) {
                 return next (new ApiError('No token', statusCodes.UNAUTHORIZED));

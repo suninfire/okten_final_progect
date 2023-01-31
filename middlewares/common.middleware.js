@@ -39,7 +39,7 @@ module.exports = {
 
 
             function isPermit (fields) {
-              if (!fields){
+              if (fields.length < 1){
                   return true;
               } else {
                   for (const field of fields) {
@@ -49,9 +49,6 @@ module.exports = {
             };
 
             const permit = isPermit(fields);
-
-            console.log(fields);
-            console.log(permit);
 
             if (permit && email !== config.SUPER_ADMIN_EMAIL) {
                 return next(new ApiError('You dont have permission', statusCodes.BAD_REQUEST));
