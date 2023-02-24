@@ -25,7 +25,7 @@ pubRouter.get(
 );
 
 pubRouter.post(
-    '/:userId',
+    '/',
     authMdlwr.checkIsAccessToken,
     commonMdlwr.checkIsBodyValid(newPubValidator),
     pubMdlwr.checkIsPubUniq,

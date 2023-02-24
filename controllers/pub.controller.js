@@ -43,7 +43,7 @@ module.exports = {
     createPub: async (req, res, next) => {
 
         try {
-            const pub = await pubService.createPub({...req.body, administrator: req.params.userId});
+            const pub = await pubService.createPub(req.body);
 
             res.status(statusCodes.CREATE).json(pub);
 

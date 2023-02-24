@@ -34,7 +34,7 @@ module.exports = {
 
             const user = await userService.createUser({...req.body, password: hashPassword });
 
-            res.status(statusCodes.CREATE).json(user);
+            res.status(statusCodes.CREATE).json(user._id);
 
         } catch (e) {
             next(e);

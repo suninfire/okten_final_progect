@@ -9,6 +9,9 @@ const nameValidator = Joi.string()
     .min(2)
     .error(new ApiError('Pub name not valid', statusCodes.BAD_REQUEST));
 
+const administratorIdValidator = Joi.string()
+    .regex(/^[0-9a-fA-F]{24}$/)
+    .error(new ApiError('Admin Id is not valid', statusCodes.BAD_REQUEST))
 
 const locationValidator = Joi.string();
 
@@ -24,6 +27,7 @@ const tagValidator = Joi.string()
 const newPubValidator = Joi.object({
     name: nameValidator.required(),
     contacts: phoneValidator.required(),
+    administrator: administratorIdValidator.required(),
     photo: Joi.string().required(),
     location: locationValidator.required(),
     openTime : timeValidator.required(),
@@ -35,6 +39,7 @@ const newPubValidator = Joi.object({
 const updatePubValidator = Joi.object({
     name: nameValidator,
     contacts: phoneValidator,
+    administrator: administratorIdValidator,
     photo: Joi.string(),
     location: locationValidator,
     openTime : timeValidator,
