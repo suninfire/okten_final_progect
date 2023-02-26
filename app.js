@@ -1,13 +1,23 @@
 const express = require('express');
 require('dotenv').config();
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const { PORT, MONGO_URL } = require('./config/config');
 const {authRouter,drinkerRouter,tidingRouter,pubRouter,responseRouter,userRouter} = require('./routes');
 const {MainErrorHandler} = require('./errors');
 
 
+
 const app = express();
+
+const corsOptions ={
+    origin:'http://localhost:3000',
+    credentials:true,
+    optionSuccessStatus:200
+}
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -22,6 +32,8 @@ app.use('/user',userRouter);
 app.use('*', (req,res,next) =>{
     next(new Error('Route not found'));
 });
+
+
 
 app.use(MainErrorHandler);
 

@@ -8,6 +8,7 @@ const pubRouter = Router();
 
 pubRouter.get(
     '/',
+    authMdlwr.checkIsAccessToken,
     pubController.getAllPubs
 );
 

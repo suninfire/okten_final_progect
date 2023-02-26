@@ -10,6 +10,7 @@ module.exports = {
 
             const access_token = await req.get(tokenTypeEnum.AUTHORISATION);
 
+
             if (!access_token) {
                 return next (new ApiError('No token', statusCodes.UNAUTHORIZED));
             }
@@ -33,21 +34,22 @@ module.exports = {
     checkIsRefreshToken: async (req,res,next) => {
 
         try {
-            const refresh_token = req.get(tokenTypeEnum.AUTHORISATION);
+            const refreshToken = await req.get(tokenTypeEnum.AUTHORISATION);
 
-            if (!refresh_token) {
+            if (!refreshToken) {
                 return next (new ApiError('No token', statusCodes.UNAUTHORIZED));
             }
 
-            tokenService.checkToken(refresh_token, tokenTypeEnum.REFRESH);
+            tokenService.checkToken(refreshToken, tokenTypeEnum.REFRESH);
 
-            const tokenInfo = await authService.getOneByParams({refresh_token});
+            const tokenInfo = await authService.getOneByParams({refresh_token:refreshToken});
 
             if (!tokenInfo) {
                 return next (new ApiError('Not valid token', statusCodes.UNAUTHORIZED));
             }
 
             req.tokenInfo = tokenInfo;
+
 
             next();
         } catch (e) {

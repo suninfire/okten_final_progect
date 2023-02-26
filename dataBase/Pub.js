@@ -13,6 +13,7 @@ const pubSchema = new Schema ({
     tidings:{ type: [Schema.Types.ObjectId],ref:'tiding', select:true},
     responses: { type: [Schema.Types.ObjectId],ref:'response',select:true},
     views:{ type: Number},
+    rating:{ type: Number,default: 0},
     tags:{type: [String]},
     averageCheck:{type: Number, default: 0},
 }, {

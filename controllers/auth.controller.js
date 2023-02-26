@@ -40,12 +40,13 @@ module.exports = {
         try {
 
             const { user, refresh_token } = req.tokenInfo;
+            const id = user.valueOf()
 
-            await authService.deleteOneByParams({refresh_token});
+            await authService.deleteOneByParams({refresh_token: refresh_token});
 
-            const authToken = tokenService.createAuthToken({_id: user});
+            const authToken =  tokenService.createAuthToken({user});
 
-            const newTokens = await authService.saveTokens({...authToken, user});
+            const newTokens = await authService.saveTokens({...authToken,user:id });
 
             res.json(newTokens);
 
