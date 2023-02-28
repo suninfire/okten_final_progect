@@ -1,0 +1,15 @@
+.att{
+    border: solid black 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    font-family: Arial, sans-serif;
+}
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    font-family: Arial, sans-serif;
+}

@@ -1,0 +1,36 @@
+.pubs{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.search{
+    display: flex;
+    justify-content: center
+}
+
+.fb{
+    display: flex;
+    flex-direction: row;
+}
+
+.filter{
+    width: 20%;
+    padding: 10px;
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
