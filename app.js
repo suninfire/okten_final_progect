@@ -7,8 +7,6 @@ const { PORT, MONGO_URL } = require('./config/config');
 const {authRouter,drinkerRouter,tidingRouter,pubRouter,responseRouter,userRouter} = require('./routes');
 const {MainErrorHandler} = require('./errors');
 
-
-
 const app = express();
 
 const corsOptions ={
