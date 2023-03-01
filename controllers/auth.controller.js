@@ -1,4 +1,4 @@
-const { authService,tokenService } = require('../services');
+const { authService,tokenService,userService } = require('../services');
 const { statusCodes } = require('../constants');
 
 module.exports = {
@@ -6,7 +6,9 @@ module.exports = {
     login: async (req,res,next) => {
         try {
             const { password } = req.body;
-            const {password: hashPassword, _id: userId} = req.user;
+            const {_id: userId} = req.user;
+            const user = await userService.getOneToComparePasswords({_id: userId});
+            const hashPassword = user.password;
 
             await tokenService.comparePasswords(password,hashPassword);
 

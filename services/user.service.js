@@ -10,6 +10,10 @@ module.exports = {
         return User.findOne(filter);
     },
 
+    getOneToComparePasswords(filter) {
+        return User.findOne(filter).select('+password');
+    },
+
     createUser(userObject) {
         return User.create(userObject);
     },

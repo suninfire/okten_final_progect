@@ -17,6 +17,7 @@ export default function UserComponent() {
     return (
         <div>
             {user.username}
+
         </div>
     );
 }

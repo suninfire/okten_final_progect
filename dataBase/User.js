@@ -7,7 +7,7 @@ const userSchema = new Schema ({
     pub:{ type: [Schema.Types.ObjectId],ref:'pub',select:true},
     adminPhone :{ type: String,default:' '},
     email: { type: String, trim: true, lowercase: true, required:true, unique:true},
-    password: { type:String, required: true },
+    password: { type:String, required: true, select: false },
     drinker: { type: [Schema.Types.ObjectId],ref:'drinker',select:true},
     favoritePubs: { type: [Schema.Types.ObjectId],ref:'pub', select:false},
     responses: { type: [Schema.Types.ObjectId],ref:'response',select:true},
@@ -18,7 +18,6 @@ const userSchema = new Schema ({
     timestamps:true,
     versionKey: false
 });
-
 
 
 module.exports = model('user', userSchema);

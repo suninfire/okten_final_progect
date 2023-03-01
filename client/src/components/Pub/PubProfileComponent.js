@@ -5,11 +5,20 @@ import {Outlet, useParams} from "react-router";
 import './PubProfileComponent.css'
 import {Link} from "react-router-dom";
 import auth from "../../Services/auth.service";
+import {getUser} from "../../Services/user.service";
 
 export default function PubProfileComponent() {
-    const {pubId} = useParams();
+
     const token = localStorage.getItem('accessToken')
     const [pub,setPub] = useState([]);
+    const {pubId} = useParams();
+
+
+    const handleLike = () => {
+        let userId = localStorage.getItem('user')
+        getUser(userId).then(user => console.log(user))
+    };
+
     useEffect(()=>{
         getPubById(pubId,token)
             .then(pub => setPub(pub.data))
@@ -18,7 +27,7 @@ export default function PubProfileComponent() {
                     return  auth.refresh(localStorage.getItem('refreshToken'))
                 }
             });
-    },[]);
+    });
 
     return (
         <div class={'main'}>
@@ -31,7 +40,11 @@ export default function PubProfileComponent() {
                    <div class={'contacts'}>{pub.contacts}<button>Написати менеджеру</button></div>
                </div>
                <div class={'box2'}>
-                   <div class={'likes'}>like or not</div>
+                   <div class={'likes'}>
+                       <button className={`like-button`} onClick={handleLike}>
+                           Like
+                       </button>
+                   </div>
                    <div class={'worktime'}>
                        Графік роботи:<br/>{pub.openTime} - {pub.closeTime}</div>
                    <div class={'pubrating'}>{pub.rating}</div>
