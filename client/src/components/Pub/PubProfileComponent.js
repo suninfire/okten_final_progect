@@ -59,7 +59,7 @@ export default function PubProfileComponent() {
                   <Link to={'tidings'} class={'nd'}>Новини</Link>
                   <Link to={'responses'}class={'nd'}>Відгуки</Link>
               </div>
-                <div>
+                <div className={'outlet'}>
                     <Outlet/>
                 </div>
             </div>

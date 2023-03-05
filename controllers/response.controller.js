@@ -3,6 +3,18 @@ const {statusCodes} = require('../constants');
 
 module.exports = {
 
+    getAllResponses: async (req, res, next) => {
+
+        try {
+            const responses = await responseService.getResponsesByParams(req.body);
+
+            res.json(responses);
+
+        } catch (e) {
+            next(e);
+        }
+    },
+
     CreateResponse: async (req, res, next) => {
 
         const userId = req.params.userId;

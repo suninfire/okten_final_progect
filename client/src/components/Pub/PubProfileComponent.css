@@ -24,7 +24,6 @@
 
 .tags{
     height: 5%;
-    background: #ff6200;
 }
 
 .box1{
@@ -135,5 +134,8 @@
     color: black;
 }
 
-
+.outlet{
+    height: 85%;
+    width: 90%;
+}
 

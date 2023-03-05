@@ -6,6 +6,11 @@ const {newResponseValidator} = require('../validators/response.validator');
 
 const responseRouter = Router();
 
+responseRouter.get(
+    '/',
+    authMdlwr.checkIsAccessToken,
+    responseController.getAllResponses
+);
 
 responseRouter.post(
     '/:userId/:pubId',

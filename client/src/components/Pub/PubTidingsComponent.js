@@ -6,10 +6,10 @@ import auth from "../../Services/auth.service";
 
 export default function PubTidingsComponent() {
     const {pubId} = useParams();
-    const token = localStorage.getItem('accessToken')
     const [tidings,setTidings] = useState([]);
+
     useEffect(()=>{
-        getTidings(token)
+        getTidings()
             .then(tiding => setTidings(tiding.data))
             .catch(error => {
                 if (error.response.statusText === "Unauthorized") {
@@ -21,7 +21,7 @@ export default function PubTidingsComponent() {
 
 
     return (
-        <div>
+        <div className={'tidingbox'}>
             {tidings.map(tiding => {
                 if(tiding.pub === pubId){
                     return <PubTidingComponent tiding={tiding} key={tiding._id}/>} })}

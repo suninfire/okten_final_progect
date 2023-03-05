@@ -1,0 +1,18 @@
+.tidingbox{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.tiding{
+    width: 15%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
