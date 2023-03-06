@@ -93,4 +93,29 @@ module.exports = {
            next(e);
        }
    },
+
+    likes: async (req, res, next) => {
+
+        try {
+            const userId = req.body.userId;
+            const pubId = req.body.pubId;
+
+            const user = await userService.getOneByParams({_id: userId});
+
+            const fav = await user.favoritePubs;
+
+
+            if (fav.includes(pubId) == true){
+               fav.splice(fav.indexOf(pubId),1)
+            }else {
+                await fav.push(pubId)
+            }
+
+            await userService.updateUserById(userId, {favoritePubs: fav});
+
+            res.json(fav);
+        } catch (e) {
+            next(e)
+        }
+    }
 };

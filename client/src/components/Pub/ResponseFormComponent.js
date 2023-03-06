@@ -40,7 +40,7 @@ export default function ResponseFormComponent() {
                     <input placeholder={'оцініть заклад від 1 до 5'} value={rating} onChange={handleRatingChange} />
                     <input placeholder={'напишіть ваш відгук'} value={comment} onChange={handleCommentChange} />
                     {/*<input type="file" onChange={handleReceiptChange} />*/}
-                    <input  onChange={handleReceiptChange} />
+                    <input placeholder={'додайте фото чеку'} value={rating} onChange={handleReceiptChange} />
                 <button type="submit">Залишити відгук</button>
             </form>
         </div>

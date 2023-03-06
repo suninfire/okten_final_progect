@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {getUser} from "../../Services/user.service";
 import auth from "../../Services/auth.service";
+import {Link} from "react-router-dom";
 
 export default function UserComponent() {
    const [user,setUser] = useState([]);
@@ -16,6 +17,7 @@ export default function UserComponent() {
 
     return (
         <div>
+            <Link to={'/home/pubs'} className="home-button" >⌂ Home</Link>
             {user.username}
 
         </div>

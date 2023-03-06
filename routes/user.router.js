@@ -36,6 +36,11 @@ userRouter.patch(
     userController.updateUserById
 );
 
+userRouter.patch(
+    '/likes/pubs',
+    authMdlwr.checkIsAccessToken,
+    userController.likes
+);
 
 userRouter.delete(
     '/:userId',

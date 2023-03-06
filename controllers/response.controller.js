@@ -33,7 +33,10 @@ module.exports = {
 
             const pubResponses = await responseService.getResponsesByParams({pub: pubId});
 
-            await pubService.updatePubById(pubId,{responses: [...pubResponses]});
+            let rating = 0;
+            await pubResponses.map(response => rating += response.rating);
+
+            await pubService.updatePubById(pubId,{responses: [...pubResponses],rating:rating/pubResponses.length});
 
             res.status(statusCodes.CREATE).json(response);
 

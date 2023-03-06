@@ -5,22 +5,26 @@ import {Outlet, useParams} from "react-router";
 import './PubProfileComponent.css'
 import {Link} from "react-router-dom";
 import auth from "../../Services/auth.service";
-import {getUser} from "../../Services/user.service";
+import {likePub} from "../../Services/user.service";
+import StarRatings from "react-star-ratings/build/star-ratings";
 
 export default function PubProfileComponent() {
 
-    const token = localStorage.getItem('accessToken')
     const [pub,setPub] = useState([]);
     const {pubId} = useParams();
+    const userId = localStorage.getItem('user');
 
-
-    const handleLike = () => {
-        let userId = localStorage.getItem('user')
-        getUser(userId).then(user => console.log(user))
+    const handleLike = (e) => {
+        e.preventDefault()
+        likePub(userId,pubId).catch(e => {
+            if (e.response.statusText === "Unauthorized") {
+                return  auth.refresh(localStorage.getItem('refreshToken'))
+            }
+        })
     };
 
     useEffect(()=>{
-        getPubById(pubId,token)
+        getPubById(pubId)
             .then(pub => setPub(pub.data))
             .catch(error => {
                 if (error.response.statusText === "Unauthorized") {
@@ -32,6 +36,8 @@ export default function PubProfileComponent() {
     return (
         <div class={'main'}>
 
+            <Link to={'/home/pubs'} className="home-button" >⌂ Home</Link>
+
            <div class={'info'}>
                <div class={'box1'}>
                    <div class={'pubname'}>{pub.name}</div>
@@ -40,14 +46,15 @@ export default function PubProfileComponent() {
                    <div class={'contacts'}>{pub.contacts}<button>Написати менеджеру</button></div>
                </div>
                <div class={'box2'}>
-                   <div class={'likes'}>
-                       <button className={`like-button`} onClick={handleLike}>
-                           Like
+                   <div>
+                       <button className={`likeButton`} onClick={handleLike}>
+                           ♡
                        </button>
                    </div>
                    <div class={'worktime'}>
                        Графік роботи:<br/>{pub.openTime} - {pub.closeTime}</div>
-                   <div class={'pubrating'}>{pub.rating}</div>
+                   <StarRatings rating={pub.rating} starRatedColor="yellow" starDimension={'15'} numberOfStars={5}/>
+                   <div class={'pubrating'}>Рейтинг:  {pub.rating}</div>
                    <div class={'avaragecheck'}>Середній чек: {pub.averageCheck} грн</div>
                </div>
            </div>
