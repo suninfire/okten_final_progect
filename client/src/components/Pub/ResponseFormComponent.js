@@ -24,7 +24,7 @@ export default function ResponseFormComponent() {
         setReceipt(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = () => {
         postResponse(userId,pubId,rating,comment,receipt).catch(error => {
             console.log(error);
             if (error.response.statusText === "Unauthorized") {

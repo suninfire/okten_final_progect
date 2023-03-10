@@ -16,7 +16,7 @@ export default function AuthComponent() {
     ];
 
     return (
-        <div class={'logorreg'}>
+        <div className={'logorreg'}>
             {links.map((link, index) => (
                 <Link key={index} to={link.to}
                       className={`lin ${selected === index ? 'selected' : ''}`}

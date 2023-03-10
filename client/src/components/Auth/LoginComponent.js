@@ -25,7 +25,7 @@ export default function LoginComponent() {
     }
 
     return (
-            <div class={'logreg'}>
+            <div className={'logreg'}>
                 <form onSubmit={handleSubmit}>
                     <div><input type="text" placeholder="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required/></div>
                     <div><input type="password" placeholder="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required/></div>

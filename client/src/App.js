@@ -23,7 +23,7 @@ import './App.css'
 export default function App() {
 
   return (
-    <div class={'app'}>
+    <div className={'app'}>
 <Routes>
 
    <Route path={'/'} element={<AgeCheck/>}/>

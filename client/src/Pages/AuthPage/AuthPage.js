@@ -5,7 +5,7 @@ import "./AuthPage.css"
 
 export default function AuthPage() {
     return (
-        <div class={'authPage'}>
+        <div className={'authPage'}>
            <AuthComponent/>
             <Outlet/>
         </div>

@@ -24,12 +24,12 @@ export default function HomeComponent() {
 
     return (
         <div>
-           <div class={'header'}>
-              <div class={'drinker'}>
+           <div className={'header'}>
+              <div className={'drinker'}>
                   <h1>Пиячок</h1>
                   <Link to={'/drinker'} className={'button'}>Створити/переглянути</Link>
               </div>
-               <div class={'but'}>
+               <div className={'but'}>
                <div><Link to={'/user'} className={'button'}>Переглянути<br/>аккаунт</Link></div>
                    <div><LogoutComponent/></div>
                </div>
@@ -37,7 +37,7 @@ export default function HomeComponent() {
            </div>
 
             <hr/>
-            <div class={'menu'}>
+            <div className={'menu'}>
                 {links.map((link, index) => (
                 <Link to={link.to}
                       className={`lin ${selected === index ? 'selected' : ''}`}

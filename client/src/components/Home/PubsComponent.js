@@ -40,15 +40,15 @@ export default function PubsComponent() {
 
     return (
         <div>
-            <div class={'search'}>
+            <div className={'search'}>
                 <form onSubmit={handleSearchSubmit}>
                     <input type="search" placeholder={'🔎︎...'} value={searchValue} onChange={event => setSearchValue(event.target.value)}/>
                     <button type="submit">Знайти</button>
                 </form>
             </div>
 
-            <div class={'fb'}>
-                <div class={'filter'}>Filter:<br/>Sort:</div>
+            <div className={'fb'}>
+                <div className={'filter'}>Filter:<br/>Sort:</div>
 
                 <div className={'pubs'}>
                     {
