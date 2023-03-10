@@ -9,7 +9,7 @@ export default function ResponseFormComponent() {
     const userId = localStorage.getItem('user');
     const [rating, setRating] = useState('');
     const [comment, setComment] = useState('');
-    const [receipt, setReceipt] = useState(null);
+    const [receipt, setReceipt] = useState('');
 
     const handleRatingChange = (e) => {
         setRating(e.target.value);
@@ -40,7 +40,7 @@ export default function ResponseFormComponent() {
                     <input placeholder={'оцініть заклад від 1 до 5'} value={rating} onChange={handleRatingChange} />
                     <input placeholder={'напишіть ваш відгук'} value={comment} onChange={handleCommentChange} />
                     {/*<input type="file" onChange={handleReceiptChange} />*/}
-                    <input placeholder={'додайте фото чеку'} value={rating} onChange={handleReceiptChange} />
+                    <input placeholder={'додайте фото чеку'} value={receipt} onChange={handleReceiptChange} />
                 <button type="submit">Залишити відгук</button>
             </form>
         </div>

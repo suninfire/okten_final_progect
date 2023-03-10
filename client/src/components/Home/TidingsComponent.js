@@ -28,7 +28,7 @@ export default function TidingsComponent() {
     }
 
     return (
-        <div>
+        <div style={{paddingBottom: '20px'}}>
             <div className={'menu'}>
                 <button className={'button'} onClick={()=> filter('акції')}> акції </button>
                 <button className={'button'} onClick={()=> filter('загальні')}>загальні</button>

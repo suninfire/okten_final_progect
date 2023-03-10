@@ -42,7 +42,7 @@ export default function PubsComponent() {
         <div>
             <div class={'search'}>
                 <form onSubmit={handleSearchSubmit}>
-                    <input type="text" value={searchValue} onChange={event => setSearchValue(event.target.value)}/>
+                    <input type="search" placeholder={'🔎︎...'} value={searchValue} onChange={event => setSearchValue(event.target.value)}/>
                     <button type="submit">Знайти</button>
                 </form>
             </div>

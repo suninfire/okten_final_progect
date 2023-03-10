@@ -41,7 +41,7 @@ export default function HomeComponent() {
                 {links.map((link, index) => (
                 <Link to={link.to}
                       className={`lin ${selected === index ? 'selected' : ''}`}
-                      onClick={() => handleLinkClick(index)}>{link.label}
+                      onClick={() => handleLinkClick(index)} key={index}>{link.label}
                 </Link>
                     ))}
             </div>

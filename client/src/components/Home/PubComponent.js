@@ -13,11 +13,12 @@ export default function PubComponent({pub}) {
                 <div class={'rating'}>
                     <div>
                         <StarRatings rating={pub.rating} starRatedColor="yellow" starDimension={'15'} numberOfStars={5}/>
+                        Рейтинг:  {pub.rating}
                     </div>
                     <div>
                         Графік роботи:<br/>{pub.openTime} - {pub.closeTime}
                     </div>
-                    <div>likes: </div>
+                    <div>Середній чек: {pub.averageCheck} грн</div>
                 </div>
             </div>
             <div class={'location'}>

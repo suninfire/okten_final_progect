@@ -5,12 +5,13 @@ import {Outlet, useParams} from "react-router";
 import './PubProfileComponent.css'
 import {Link} from "react-router-dom";
 import auth from "../../Services/auth.service";
-import {likePub} from "../../Services/user.service";
+import {getUser, likePub} from "../../Services/user.service";
 import StarRatings from "react-star-ratings/build/star-ratings";
 
 export default function PubProfileComponent() {
 
     const [pub,setPub] = useState([]);
+    const [like,setLike] = useState('');
     const {pubId} = useParams();
     const userId = localStorage.getItem('user');
 
@@ -31,6 +32,18 @@ export default function PubProfileComponent() {
                     return  auth.refresh(localStorage.getItem('refreshToken'))
                 }
             });
+        getUser(userId).then(user => {
+            let fav = user.data.favoritePubs;
+            if(fav.includes(pubId) === true){
+                setLike('♥')
+            }else {
+                setLike('♡')
+            }
+        }).catch(error => {
+            if (error.response.statusText === "Unauthorized") {
+                return  auth.refresh(localStorage.getItem('refreshToken'))
+            }
+        });
     });
 
     return (
@@ -48,7 +61,7 @@ export default function PubProfileComponent() {
                <div class={'box2'}>
                    <div>
                        <button className={`likeButton`} onClick={handleLike}>
-                           ♡
+                           {like}
                        </button>
                    </div>
                    <div class={'worktime'}>
