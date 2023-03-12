@@ -17,6 +17,9 @@ import PubTidingsComponent from "./components/Pub/PubTidingsComponent";
 import PubResponsesComponent from "./components/Pub/PubResponsesComponent";
 
 import './App.css'
+import CreateDrinkerComponent from "./components/Drinker/CreateDrinkerComponent";
+import JoinDrinkerComponent from "./components/Drinker/JoinDrinkerComponent";
+import UserDrinkerComponent from "./components/Drinker/UserDrinkerComponent";
 
 
 
@@ -47,7 +50,11 @@ export default function App() {
 
     <Route path={'/user'} element={<UserPage/>}/>
 
-    <Route path={'/drinker'} element={<DrinkerPage/>}/>
+    <Route path={'/drinker'} element={<DrinkerPage/>}>
+        <Route path={'create'} element={<CreateDrinkerComponent/>}/>
+        <Route path={'join'} element={<JoinDrinkerComponent/>}/>
+        <Route path={'myDrinker'} element={<UserDrinkerComponent/>}/>
+    </Route>
 
 </Routes>
     </div>

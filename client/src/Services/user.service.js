@@ -12,7 +12,7 @@ const registrationUser = async (email,password,username) => {
     return response.data
 }
 
-const likePub = async (userId,pubId) =>  await axiosService.patch(
+const likePub =  (userId,pubId) => axiosService.patch(
     urls.user + '/likes/pubs',
     {userId, pubId},
     {headers:{'Authorization': localStorage.getItem('accessToken')}}).catch(e=>console.log(e));

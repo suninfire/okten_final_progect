@@ -17,12 +17,12 @@ module.exports = {
 
     getDrinkerById: async (req, res, next ) => {
 
-        const {drinkerId} = req.params;
+        const userId = req.params.userId;
 
         try {
-            const drinker = await drinkerService.getOneDrinker({_id: drinkerId});
+            const drinkers = await drinkerService.getDrinkersByParams({meetOwner: userId});
 
-            res.json(drinker);
+            res.json(drinkers);
 
         } catch (e) {
             next(e);

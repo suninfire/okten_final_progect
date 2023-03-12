@@ -13,7 +13,7 @@ drinkerRouter.get(
 );
 
 drinkerRouter.get(
-    '/:drinkerId',
+    '/:userId',
     authMdlwr.checkIsAccessToken,
     drinkerController.getDrinkerById
 );

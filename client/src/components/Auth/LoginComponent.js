@@ -14,7 +14,7 @@ export default function LoginComponent() {
             .catch(error => {
                 if (error) {
                     alert(error.response.data.message)
-                    window.location.href = '/auth/login'
+
                 }
             })
 
