@@ -1,4 +1,4 @@
-const { userService,drinkerService } = require('../services');
+const { userService,drinkerService,pubService } = require('../services');
 const { statusCodes } = require('../constants');
 
 module.exports = {
@@ -35,11 +35,17 @@ module.exports = {
         const pubId = req.params.pubId;
 
         try {
+            const pub = await pubService.getOneByParams({_id:pubId});
+
             const drinker = await drinkerService.createDrinker({
                 ...req.body,
                 pub: pubId,
                 meetOwner: userId,
+                pubName: pub.name,
+                pubLocation: pub.location
             });
+
+
 
             const userDrinkers = await drinkerService.getDrinkersByParams({meetOwner: userId});
 

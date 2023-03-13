@@ -9,12 +9,13 @@ import {useState} from "react";
 
 export default function HomeComponent() {
 
-    const [selected, setSelected] = useState(0);
+    const [selected, setSelected] = useState(null);
 
 
     const handleLinkClick = (index) => {
         setSelected(index);
     };
+
 
     const links = [
         { label: 'Заклади', to: 'pubs' },
@@ -27,7 +28,7 @@ export default function HomeComponent() {
            <div className={'header'}>
               <div className={'drinker'}>
                   <h1>Пиячок</h1>
-                  <Link to={'/drinker'} className={'button'}>Створити/переглянути</Link>
+                  <Link to={'/message'} className={'button'}>Створити/переглянути</Link>
               </div>
                <div className={'but'}>
                <div><Link to={'/user'} className={'button'}>Переглянути<br/>аккаунт</Link></div>
@@ -41,7 +42,7 @@ export default function HomeComponent() {
                 {links.map((link, index) => (
                 <Link to={link.to}
                       className={`lin ${selected === index ? 'selected' : ''}`}
-                      onClick={() => handleLinkClick(index)} key={index}>{link.label}
+                      onClick={() => handleLinkClick(index)}>{link.label}
                 </Link>
                     ))}
             </div>

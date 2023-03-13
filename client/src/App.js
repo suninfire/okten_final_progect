@@ -20,6 +20,7 @@ import './App.css'
 import CreateDrinkerComponent from "./components/Drinker/CreateDrinkerComponent";
 import JoinDrinkerComponent from "./components/Drinker/JoinDrinkerComponent";
 import UserDrinkerComponent from "./components/Drinker/UserDrinkerComponent";
+import MessageComponent from "./components/Drinker/MessageComponent";
 
 
 
@@ -50,6 +51,7 @@ export default function App() {
 
     <Route path={'/user'} element={<UserPage/>}/>
 
+    <Route path={'/message'} element={<MessageComponent/>}/>
     <Route path={'/drinker'} element={<DrinkerPage/>}>
         <Route path={'create'} element={<CreateDrinkerComponent/>}/>
         <Route path={'join'} element={<JoinDrinkerComponent/>}/>

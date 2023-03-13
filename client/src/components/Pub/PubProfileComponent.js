@@ -72,7 +72,7 @@ export default function PubProfileComponent() {
                </div>
            </div>
 
-           <div className={'drinker'}><Link to={'/drinker'} class={'drinkerbutton'}><div>Пиячок</div></Link></div>
+           <div className={'drinker'}><Link to={'/message'} class={'drinkerbutton'}><div>Пиячок</div></Link></div>
             <hr/>
             <div className={'newstidings'}>
               <div>

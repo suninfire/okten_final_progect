@@ -3,17 +3,16 @@ import {Outlet} from "react-router";
 import {useState} from "react";
 
 import './DrinkerComponent.css'
-import MessageComponent from "./MessageComponent";
 
 export default function DrinkerComponent() {
-    const[message,setMessage] = useState(true);
-    const userId = localStorage.getItem('user');
-    const [selected, setSelected] = useState(0);
+
+    const [selected, setSelected] = useState(null);
 
 
     const handleLinkClick = (index) => {
         setSelected(index);
     };
+
 
     const links = [
         { label: 'Створити', to: 'create' },
@@ -21,13 +20,10 @@ export default function DrinkerComponent() {
         { label: 'Мій пиячок', to: 'myDrinker' },
     ];
 
-    const handleMessageClose = () => {
-        setMessage(false);
-    }
+
     return (
         <div className={'drinkermain'}>
             <Link to={'/home/pubs'} className="home-button" >⌂ Home</Link>
-            {message ? <MessageComponent onClose={handleMessageClose}/> : (
                 <div className={'drinkermenu'}>
                     {links.map((link, index) => (
                         <Link to={link.to}
@@ -36,7 +32,6 @@ export default function DrinkerComponent() {
                         </Link>
                     ))}
                 </div>
-            )}
             <Outlet/>
         </div>
     );

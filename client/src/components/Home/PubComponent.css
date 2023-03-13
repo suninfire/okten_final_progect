@@ -1,7 +1,7 @@
 .pub{
     display: flex;
     flex-direction: column;
-    border: #05393a solid 1px;
+    border-radius: 5%;
     width: 370px;
     height: 300px;
     margin: 30px;
@@ -28,7 +28,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: #05393a solid 1px;
 }
 
 .rating{

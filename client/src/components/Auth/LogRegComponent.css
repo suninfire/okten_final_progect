@@ -29,7 +29,7 @@ input {
 
 input:focus {
     outline: none;
-    box-shadow: 0px 0px 5px #10674e;
+    box-shadow: 0px 0px 5px #13696c;
 }
 
 button[type="submit"] {

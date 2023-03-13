@@ -14,8 +14,6 @@ export default function CreateDrinkerComponent() {
     const [description, setDescription] = useState('');
     const [criteria, setCriteria] = useState('');
 
-    console.log(date,time)
-
 
     useEffect(()=>{
         getPubs()
@@ -51,12 +49,13 @@ export default function CreateDrinkerComponent() {
                     {pubs.map((pub, index) => (
                         <option key={index} value={pub._id}>{pub.name}</option>))}
                 </select></div>
-                <div><input type="date" name="date" placeholder="date" value={date} onChange={(e) => setDate(e.target.value)} required /></div>
-                <div><input type="time" name="time" placeholder="time" value={time} onChange={(e) => setTime(e.target.value)} required /></div>
-                <div><input type="text" name="description" placeholder="description" value={description} onChange={(e) => setDescription(e.target.value)} required /></div>
-                <div><input type="text" name="criteria" placeholder="criteria" value={criteria} onChange={(e) => setCriteria(e.target.value)} required /></div>
+                <div><input type="text" name="date" placeholder="дд.мм.рр" value={date} onChange={(e) => setDate(e.target.value)} required /></div>
+                <div><input type="text" name="time" placeholder="00:00" value={time} onChange={(e) => setTime(e.target.value)} required /></div>
+                <div><input type="text" name="description" placeholder="опис" value={description} onChange={(e) => setDescription(e.target.value)} required /></div>
+                <div><input type="text" name="criteria" placeholder="критерії" value={criteria} onChange={(e) => setCriteria(e.target.value)} required /></div>
                 <div><button type={"submit"}>Створити</button></div>
             </form>
+            <div style={{width: '400px', margin:'30px'}}>* для створення ' Пиячка ' оберіть заклад,дату та час. У полі ' опис ' опишіть мету зустрічі,тощо. У полі ' критерії ' вкажіть стать, кількість людей в компанії, хто оплачує та бажану суму витрат </div>
         </div>
     );
 }

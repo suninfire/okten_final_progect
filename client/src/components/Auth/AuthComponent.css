@@ -14,19 +14,9 @@
     color: #90988f;
 }
 
-.linn{
-    text-decoration: none;
-    font-size: 40px;
-    font-weight: bold;
-    padding: 30px;
-    color: #90988f;
-}
 
 .lin.selected {
     color: #05393a;
 }
 
-.linn.selected {
-    color: #05393a;
-}
 
