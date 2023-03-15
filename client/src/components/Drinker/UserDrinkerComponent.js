@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {getDrinker} from "../../Services/drinker.service";
+import {deleteDrinker, getDrinker} from "../../Services/drinker.service";
 import auth from "../../Services/auth.service";
 
 export default function UserDrinkerComponent() {
@@ -16,6 +16,15 @@ export default function UserDrinkerComponent() {
        });
     },[userId]);
 
+    const delDrinker = (id) => {
+        deleteDrinker(id).catch(e => {
+            if (e.response.statusText === "Unauthorized") {
+                return  auth.refresh(localStorage.getItem('refreshToken'))
+            }
+            console.log(e.response)
+        });
+    }
+
     return (
         <div className={'drinkersBox'}>
             {drinkers.map(drinker =>
@@ -27,7 +36,7 @@ export default function UserDrinkerComponent() {
 
                     <div className={'descriptions'}><div style={{textAlign:'center'}}><h3>{drinker.description}</h3> </div>
                   <div style={{textAlign:'center'}}><h4>{drinker.criteria}</h4> </div>
-                        <div><button>Видалити</button><button>Редагувати</button> </div></div>
+                        <div><button onClick={() => delDrinker(drinker._id)}>Видалити</button></div></div>
                 </div>
             )}
 

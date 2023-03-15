@@ -28,6 +28,7 @@ module.exports = {
            const id = req.params[param];
 
             const user = req.tokenInfo.user;
+
             const email = user.email;
 
           let fields;
@@ -50,7 +51,7 @@ module.exports = {
 
             const permit = isPermit(fields);
 
-            if (permit && email !== config.SUPER_ADMIN_EMAIL) {
+            if (permit === false && email !== config.SUPER_ADMIN_EMAIL) {
                 return next(new ApiError('You dont have permission', statusCodes.BAD_REQUEST));
             }
 
