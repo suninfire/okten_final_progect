@@ -7,6 +7,7 @@ const responseSchema = new Schema ({
     receipt: { type: String, default: ''},
     user:{ type: Schema.Types.ObjectId,ref:'user',select:true},
     pub:{ type: Schema.Types.ObjectId,ref:'pub',select:true},
+    pubName: {type: Schema.Types.String.name, ref:'pub'}
 }, {
 
     timestamps:true,

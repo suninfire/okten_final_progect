@@ -7,7 +7,7 @@ module.exports = {
     },
 
     getOneByParams(filter) {
-        return User.findOne(filter);
+        return User.findOne(filter).populate('responses').populate('favoritePubs');
     },
 
     getOneToComparePasswords(filter) {

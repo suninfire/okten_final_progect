@@ -24,6 +24,7 @@ import MessageComponent from "./components/Drinker/MessageComponent";
 
 
 
+
 export default function App() {
 
   return (
@@ -49,7 +50,9 @@ export default function App() {
         <Route path={'responses'} element={<PubResponsesComponent/>}/>
     </Route>
 
-    <Route path={'/user'} element={<UserPage/>}/>
+    <Route path={'/user'} element={<UserPage/>}>
+
+    </Route>
 
     <Route path={'/message'} element={<MessageComponent/>}/>
     <Route path={'/drinker'} element={<DrinkerPage/>}>
@@ -63,8 +66,3 @@ export default function App() {
 );
 }
 
-// .catch(error => {
-//     if (error.response.statusText === "Unauthorized") {
-//         return  auth.refresh(localStorage.getItem('refreshToken'))
-//     }
-// })
