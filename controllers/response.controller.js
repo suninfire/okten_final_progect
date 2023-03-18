@@ -21,10 +21,13 @@ module.exports = {
         const pubId = req.params.pubId;
 
         try {
+
+            const pub = await pubService.getOneByParams({_id: pubId})
             const response = await responseService.createResponse({
                 ...req.body,
                 user: userId,
-                pub: pubId
+                pub: pubId,
+                pubName: pub.name
             });
 
             const userResponses = await responseService.getResponsesByParams({user: userId});

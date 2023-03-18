@@ -22,7 +22,7 @@ export default function PubTidingsComponent() {
 
     return (
         <div className={'tidingbox'}>
-            {tidings.map(tiding => {
+            {tidings?.map(tiding => {
                 if(tiding.pub === pubId){
                     return <PubTidingComponent tiding={tiding} key={tiding._id}/>} })}
         </div>

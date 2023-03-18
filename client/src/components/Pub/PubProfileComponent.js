@@ -33,7 +33,11 @@ export default function PubProfileComponent() {
                 }
             });
         getUser(userId).then(user => {
-            let fav = user.data.favoritePubs;
+            let fav = [];
+            const favPubsArr = user.data.favoritePubs;
+            for (const favPubsArrElement of favPubsArr) {
+                fav.push(favPubsArrElement._id)
+            }
             if(fav.includes(pubId) === true){
                 setLike('♥')
             }else {

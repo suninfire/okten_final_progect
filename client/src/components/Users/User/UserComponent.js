@@ -5,7 +5,6 @@ import StarRatings from "react-star-ratings/build/star-ratings";
 
 export default function UserComponent({user}) {
     const responses = user.responses;
-    console.log(responses)
     const favoritePubs = user.favoritePubs;
 
     return (
@@ -28,6 +27,7 @@ export default function UserComponent({user}) {
             <div className={'userResponses'}>
                 {responses?.map(response => <div className={'userResponse'}>
 
+                    <h3>{response.pubName}</h3>
                     <div>{response.rating }
                     <StarRatings rating={response.rating} starRatedColor="yellow" starDimension={'15'} numberOfStars={5}/>
                     </div>
