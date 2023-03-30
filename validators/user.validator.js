@@ -39,7 +39,7 @@ const newUserValidator = Joi.object({
 
 const updateUserValidator = Joi.object({
     username: nameValidator,
-    // photo: Joi.string(),
+    photo: Joi.string(),
     email: emailValidator,
     adminPhone: phoneValidator,
     administrator: Joi.boolean()

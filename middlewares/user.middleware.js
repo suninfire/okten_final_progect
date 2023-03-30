@@ -59,7 +59,6 @@ module.exports = {
     },
 
     checkIsPermit: async (req, res, next) => {
-
         try {
             const user = req.tokenInfo.user;
             const id = user._id.valueOf();
@@ -70,7 +69,6 @@ module.exports = {
             if (id !== userId && email !== config.SUPER_ADMIN_EMAIL) {
                 return next(new ApiError('You dont have permission', statusCodes.BAD_REQUEST));
             }
-
             next();
 
         } catch (e) {

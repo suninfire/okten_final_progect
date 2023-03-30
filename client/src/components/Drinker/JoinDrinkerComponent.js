@@ -13,11 +13,11 @@ export default function JoinDrinkerComponent() {
                 return  auth.refresh(localStorage.getItem('refreshToken'))
             }
         });
-    },[]);
+    },[drinkers]);
 
     return (
         <div className={'drinkersBox'}>
-            {drinkers.map(drinker => { if(drinker.meetOwner !== user) {
+            {drinkers?.map(drinker => { if(drinker.meetOwner !== user) {
                return <div className={'drinkerBox'}>
                     <div style={{width: '40%'}}><div><h3>📅 {drinker.date} </h3> </div>
                         <div><h3>🕓{drinker.time}</h3> </div>

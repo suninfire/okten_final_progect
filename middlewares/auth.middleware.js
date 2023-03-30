@@ -5,7 +5,6 @@ const {authService, tokenService} = require('../services');
 module.exports = {
 
     checkIsAccessToken: async (req,res,next) => {
-
         try {
 
             const access_token = await req.get(tokenTypeEnum.AUTHORISATION);
