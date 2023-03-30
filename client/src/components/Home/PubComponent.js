@@ -40,7 +40,8 @@ export default function PubComponent({pub}) {
     });
 
     return (
-        <Link to={`/pub/`+pub._id.toString()} class={'link'}> <div className={'pub'}>
+        <Link to={`/pub/`+pub._id.toString()} class={'link'}>
+            <div className={'pub'}>
 
             <div className={'name'}>
                 <h3>{pub.name}</h3>

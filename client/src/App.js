@@ -21,6 +21,9 @@ import CreateDrinkerComponent from "./components/Drinker/CreateDrinkerComponent"
 import JoinDrinkerComponent from "./components/Drinker/JoinDrinkerComponent";
 import UserDrinkerComponent from "./components/Drinker/UserDrinkerComponent";
 import MessageComponent from "./components/Drinker/MessageComponent";
+import AllPubsComponent from "./components/Users/SuperAdmin/AllPubsComponent";
+import PubsForExpectComponent from "./components/Users/SuperAdmin/PubsForExpectComponent";
+import AllUsersComponent from "./components/Users/SuperAdmin/AllUsersComponent";
 
 
 
@@ -51,7 +54,9 @@ export default function App() {
     </Route>
 
     <Route path={'/user'} element={<UserPage/>}>
-
+        <Route path={'pubs'} element={<AllPubsComponent/>}/>
+        <Route path={'pubsForExpect'} element={<PubsForExpectComponent/>}/>
+        <Route path={'users'} element={<AllUsersComponent/>}/>
     </Route>
 
     <Route path={'/message'} element={<MessageComponent/>}/>
