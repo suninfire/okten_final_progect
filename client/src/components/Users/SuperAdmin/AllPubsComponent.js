@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {getPubs} from "../../../Services/pub.service";
 import auth from "../../../Services/auth.service";
-import PubComponent from "../../Home/PubComponent";
+import PubForAdminComponent from "./PubForAdminComponent";
 
 export default function AllPubsComponent() {
 
@@ -21,7 +21,7 @@ export default function AllPubsComponent() {
         <div>
             <div className={'pubs'}>
                 {
-                    pubs.map(pub => <PubComponent pub={pub} key={pub._id}/>)
+                    pubs.map(pub => <PubForAdminComponent pub={pub} key={pub._id}/>)
                 }
             </div>
         </div>

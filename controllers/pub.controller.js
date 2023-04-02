@@ -56,6 +56,7 @@ module.exports = {
 
         try {
             const {pubId} = req.params;
+            console.log(req.body)
 
             const pub = await pubService.updatePubById(pubId, req.body);
 

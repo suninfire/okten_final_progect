@@ -17,7 +17,7 @@ export default function SuperAdminComponent({user}) {
 
     return (
         <div>
-            <Link to={'/home/pubs'} className="home-button" >⌂ Home</Link>
+            <Link to={'/home/pubs'} className={"home-button"} >⌂ Home</Link>
             <div className={'menu'}>
                 {links.map((link, index) => (
                     <Link to={link.to}

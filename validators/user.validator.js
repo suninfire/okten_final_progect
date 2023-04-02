@@ -3,6 +3,10 @@ const Joi = require('joi');
 const {statusCodes} = require('../constants');
 const {ApiError} = require('../errors');
 
+const pubIdValidator = Joi.string()
+        .regex(/^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/)
+        .error(new ApiError('Pub Id not valid', statusCodes.BAD_REQUEST));
+
 const emailValidator = Joi.string()
     .regex(/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/)
     .lowercase()
@@ -42,6 +46,7 @@ const updateUserValidator = Joi.object({
     photo: Joi.string(),
     email: emailValidator,
     adminPhone: phoneValidator,
+    pub: Joi.array().items(pubIdValidator),
     administrator: Joi.boolean()
 });
 

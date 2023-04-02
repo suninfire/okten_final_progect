@@ -2,6 +2,9 @@ import {axiosService} from "./axios.service";
 
 import {urls} from "./urls";
 
+const getUsers = () => axiosService.get(urls.user,{headers:{
+        'Authorization': localStorage.getItem('accessToken')
+    }});
 
 const getUser = (id) => axiosService.get(urls.user + `/` + id,{headers:{
         'Authorization': localStorage.getItem('accessToken')
@@ -23,22 +26,8 @@ const likePub =  (userId,pubId) => axiosService.patch(
     .then(r => console.log(r));
 
 
-
-
-
 const deleteUser = (id) => {
     axiosService.delete(urls.user + `/` + id, {
-        headers: {
-            'Authorization': localStorage.getItem('accessToken')
-        }
-    }).then(r => console.log(r));
-    localStorage.clear()
-    window.location.href = '/auth/registration'
-};
-
-
-const updateUser = async (id,body) => {
-    await axiosService.patch(urls.user + `/` + id, body,{
         headers: {
             'Authorization': localStorage.getItem('accessToken')
         }
@@ -46,4 +35,14 @@ const updateUser = async (id,body) => {
     window.location.reload();
 };
 
-export {getUser,registrationUser,likePub,deleteUser,updateUser}
+
+const updateUser = async (id,username,email,administrator,pub,adminPhone) => {
+    await axiosService.patch(urls.user + `/` + id, {username, email, administrator, pub, adminPhone},{
+        headers: {
+            'Authorization': localStorage.getItem('accessToken')
+        }
+    }).then(r => console.log(r));
+    window.location.reload();
+};
+
+export {getUser,registrationUser,likePub,deleteUser,updateUser,getUsers}

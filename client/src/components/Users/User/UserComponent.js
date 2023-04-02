@@ -69,6 +69,8 @@ export default function UserComponent({user}) {
             }
             console.log(e.response)
         });
+        localStorage.clear()
+        window.location.href = '/auth/registration'
     };
 
     const handleEditClick = () => {

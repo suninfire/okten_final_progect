@@ -1,0 +1,53 @@
+.pubforexpect{
+    background: white;
+    border-radius: 5%;
+    padding: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.photoPub{
+    border: 1px solid black;
+    width: 300px;
+    height: 200px;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+
+.usersBox{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 30px;
+}
+
+.userbox{
+    border-radius: 5%;
+    padding: 15px;
+    margin: 50px;
+    width: 550px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.butandphoto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.usersInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-left: 10px;
+}
