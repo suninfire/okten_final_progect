@@ -26,4 +26,8 @@ module.exports = {
     deleteMany(filter) {
         return Pub.deleteMany(filter);
     },
+
+    updateMany(filter) {
+        return Pub.updateMany(filter)
+    }
 };

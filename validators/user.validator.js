@@ -35,7 +35,7 @@ const phoneValidator = Joi.string()
 
 const newUserValidator = Joi.object({
     username: nameValidator.required(),
-    // photo: Joi.string(),
+    avatar: Joi.string(),
     email: emailValidator.required(),
     password: passwordValidator.required(),
 
@@ -43,7 +43,7 @@ const newUserValidator = Joi.object({
 
 const updateUserValidator = Joi.object({
     username: nameValidator,
-    photo: Joi.string(),
+    avatar: Joi.string(),
     email: emailValidator,
     adminPhone: phoneValidator,
     pub: Joi.array().items(pubIdValidator),

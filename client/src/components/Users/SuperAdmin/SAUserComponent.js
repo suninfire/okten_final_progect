@@ -38,11 +38,13 @@ export default function SAUserComponent({user}) {
         if(newUserStatus === "Так" || true ){status = true}
         if(newUserStatus === "Ні" || false ){status = false}
       updateUser(id,
-           newUserName,
-          newUserEmail,
-          status,
-          newUserPub,
-          newUserPubContact).catch(e => {
+          {
+              username: newUserName,
+              email: newUserEmail,
+              administrator: status,
+              pub: newUserPub,
+              adminPhone: newUserPubContact
+          }).catch(e => {
           if (e.response.statusText === "Unauthorized") {
               return  auth.refresh(localStorage.getItem('refreshToken'))
           }

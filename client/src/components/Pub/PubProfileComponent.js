@@ -48,7 +48,7 @@ export default function PubProfileComponent() {
                 return  auth.refresh(localStorage.getItem('refreshToken'))
             }
         });
-    });
+    },[pub]);
 
     return (
         <div className={'main'}>

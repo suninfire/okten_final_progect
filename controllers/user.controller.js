@@ -47,10 +47,13 @@ module.exports = {
             const {userId} = req.params;
 
 
-            const user = await userService.updateUserById(userId, req.body);
 
+            const user = await userService.getOneByParams({_id: userId});
+            const userPhone = user.adminPhone;
+            const updatedUser = await userService.updateUserById(userId, req.body);
+            await pubService.updateMany({ contacts: userPhone}, { $set: { contacts: req.body.adminPhone && userPhone } })
 
-            res.json(user);
+            res.json(updatedUser);
 
         } catch (e) {
             next(e);

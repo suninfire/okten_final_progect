@@ -5,7 +5,7 @@ const userSchema = new Schema ({
     avatar: { type: String, default: ''},
     administrator :{ type: Boolean,default:false},
     pub:{ type: [Schema.Types.ObjectId],ref:'pub',select:true},
-    adminPhone :{ type: String,default:' '},
+    adminPhone :{ type: String,default:' ',select:true},
     email: { type: String, trim: true, lowercase: true, required:true, unique:true},
     password: { type:String, required: true, select: false },
     drinker: { type: [Schema.Types.ObjectId],ref:'drinker',select:true},

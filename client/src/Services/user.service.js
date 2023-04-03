@@ -36,8 +36,8 @@ const deleteUser = (id) => {
 };
 
 
-const updateUser = async (id,username,email,administrator,pub,adminPhone) => {
-    await axiosService.patch(urls.user + `/` + id, {username, email, administrator, pub, adminPhone},{
+const updateUser = async (id,body) => {
+    await axiosService.patch(urls.user + `/` + id, body,{
         headers: {
             'Authorization': localStorage.getItem('accessToken')
         }
